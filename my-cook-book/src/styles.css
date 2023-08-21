@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+
+    /*COLOR*/
+    /* --BGCOLOR:#252B48; */
+    --BGCOLOR:hsla(52, 93%, 88%, 0.749);
+    --FIRSTMAINCOLOR:#445069;
+    --SECONDMAINDCOLOR:#5B9A8B;
+    --THIRDMAINCOLOR:#252B48;
+}
+*{
+    margin: 0;
+    padding: 0;
+    
+}

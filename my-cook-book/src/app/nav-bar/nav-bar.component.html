@@ -1,0 +1,27 @@
+<nav class="p-3 navbar navbar-expand-sm bg-body-tertiary">
+    <span class="navbar-brand mb-0 ">MyCookBook</span>
+
+    <button data-bs-toggle="collapse" 
+            data-bs-target="#navBarNav"
+             type="button" 
+             class="navbar-toggler"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            aria-controls="navBarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navBarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" aria-current="page" routerLink="/my-lists">My Lists</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" routerLinkActive="active"  routerLink="/create-list" >Create List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/edit-lists">Edit List</a>
+        </li>
+     
+      </ul>
+    </div>
+</nav>

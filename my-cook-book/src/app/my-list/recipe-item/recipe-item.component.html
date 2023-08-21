@@ -1,0 +1,18 @@
+
+        <div class="card mt-3">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                {{recipe.recipeName + recipe.preparationTime + recipe.cookingTime}}
+
+              <button class="btn btn-primary collapsed btn-collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Full Recipe
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
+            <div class="card-body">
+             {{recipe.Instructions}}
+            </div>
+          </div>
+        </div>
+      
