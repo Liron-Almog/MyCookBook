@@ -1,6 +1,6 @@
 
         <div class="card mt-4">
-          <div class="card-header" id="headingThree">
+          <div class="card-header">
             <h5 class="text-center">Recipe Name: {{recipe.recipeName}}</h5>
             <hr>
             <h6 style="display:inline">Preparation Time:	&nbsp;</h6>
@@ -11,13 +11,14 @@
       
           
           <div class="row justify-content-center">  
-            <button class="mt-3 btn btn-primary collapsed col-6" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <button class="mt-3 btn btn-primary collapsed col-6" data-bs-toggle="collapse" 
+            [attr.data-bs-target]="'#' + recipe.recipeId" aria-expanded="false" aria-controls="collapseThree">
               Full Recipe
             </button>
           </div>
           
           </div>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
+          <div id="{{recipe.recipeId}}" class="collapse"  data-bs-parent="#accordion">
             <div class="card-body">
               <h6>Instructions</h6>
              {{recipe.Instructions}}

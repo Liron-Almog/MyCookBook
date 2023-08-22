@@ -10,6 +10,7 @@ import { CreateListComponent } from './create-list/create-list.component';
 import { EditListsComponent } from './edit-lists/edit-lists.component';
 import { RecipesListComponent } from './my-list/recipes-list/recipes-list.component';
 import { RecipeItemComponent } from './my-list/recipe-item/recipe-item.component';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RecipeItemComponent } from './my-list/recipe-item/recipe-item.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
