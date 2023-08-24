@@ -11,11 +11,11 @@ export class ApiService{
     setUrl(newUrl:string){
         this.url = newUrl;
     }
-    get(extraData:string) :Observable<any> { 
-        return this.http.get(this.url + extraData);
+    get(pathAndParams:string) :Observable<any> { 
+        return this.http.get(this.url + pathAndParams);
     }
-    delete(){
-        
+    delete(pathAndParams:string){
+        return this.http.delete(this.url + pathAndParams);
     }
     post(){
         

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
+import { Recipe } from '../my-list/recipe.model';
 
 @Component({
   selector: 'app-edit-lists',

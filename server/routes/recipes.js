@@ -33,5 +33,10 @@ const recipes = [
 router.get('/get-items',(req,res) =>{
    res.status(200).send(recipes)
 })
+router.delete('/delete-item/:id',(req,res) =>{
+  const itemId = req.params.id;
+  console.log(itemId);
+  res.status(200).send()
 
+})
 module.exports = router;

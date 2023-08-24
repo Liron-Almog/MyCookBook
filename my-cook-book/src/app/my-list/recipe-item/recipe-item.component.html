@@ -9,13 +9,13 @@
           
           <div class="row justify-content-center">  
             <button class="mt-3 btn btn-primary collapsed col-6" data-bs-toggle="collapse" 
-            [attr.data-bs-target]="'#' + recipe.recipeId" aria-expanded="false" aria-controls="collapseThree">
+            [attr.data-bs-target]="'#' + recipe.id" aria-expanded="false" aria-controls="collapseThree">
               Full Recipe
             </button>
           </div>
           
           </div>
-          <div id="{{recipe.recipeId}}" class="collapse"  data-bs-parent="#accordion">
+          <div id="{{recipe.id}}" class="collapse"  data-bs-parent="#accordion">
             <div class="card-body">
               <h6>Instructions</h6>
              {{recipe.Instructions}}

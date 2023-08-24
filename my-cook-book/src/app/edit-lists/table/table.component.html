@@ -1,11 +1,29 @@
-<table class="table">
+<div class="row justify-content-center">
+  <div class="col-10">
+   
+    <div class="row justify-content-center">  
+      <div *ngIf="isLoading" class="spinner-border" role="status">
+        
+      </div>
+
+  </div>
+  <div *ngIf="isError" class="alert alert-danger" role="alert">
+    Something Went Worng...
+  </div>
+<table *ngIf="!isLoading" class="table mt-5 table-dark table-striped" >
     <thead>
       <tr>
         <th *ngFor="let field of colNames" scope="col">{{field}}</th>
       </tr>
     </thead>
-    <tbody>
-       <app-table-row-item *ngFor="let recipeElement of recipes" [recipe]="recipeElement"></app-table-row-item>
+    <tbody >
+        <tr  *ngFor="let recipeElement  of recipes; let i = index" [recipe]="recipeElement">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{recipeElement.name}}</td>
+          <td>{{recipeElement.preparationTime}}</td>
+          <td><button class="btn btn-danger" id="{{recipeElement.id}}" (click)="onDeleteClick($event)" >Delete</button></td>
+      </tr>
     </tbody>
   </table>
-
+</div>
+</div>

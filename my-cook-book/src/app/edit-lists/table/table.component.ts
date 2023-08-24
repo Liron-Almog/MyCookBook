@@ -22,6 +22,12 @@ export class TableComponent {
 
   constructor(private userData: UserDataService) { }
 
+  onDeleteClick(event:any) {
+    console.log(event.target.id);
+    this.userData.deleteItem("/recipes/delete-item/"+ event.target.id);
+   
+  }
+
   ngOnInit(): void {
     this.userData.initializeRecipeData();
     // Assign the subscriptions in ngOnInit

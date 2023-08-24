@@ -12,7 +12,7 @@ import { RecipesListComponent } from './my-list/recipes-list/recipes-list.compon
 import { RecipeItemComponent } from './my-list/recipe-item/recipe-item.component';
 import {HttpClientModule} from '@angular/common/http';
 import { TableComponent } from './edit-lists/table/table.component';
-import { TableRowItemComponent } from './edit-lists/table-row-item/table-row-item.component';
+
 
 
 
@@ -27,7 +27,7 @@ import { TableRowItemComponent } from './edit-lists/table-row-item/table-row-ite
     RecipesListComponent,
     RecipeItemComponent,
     TableComponent,
-    TableRowItemComponent,
+
 
   ],
   imports: [
