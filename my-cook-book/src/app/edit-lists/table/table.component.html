@@ -1,0 +1,11 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th *ngFor="let field of colNames" scope="col">{{field}}</th>
+      </tr>
+    </thead>
+    <tbody>
+       <app-table-row-item *ngFor="let recipeElement of recipes" [recipe]="recipeElement"></app-table-row-item>
+    </tbody>
+  </table>
+

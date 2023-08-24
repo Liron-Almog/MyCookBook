@@ -1,16 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Recipe } from '../recipe.model';
-import { ApiService } from 'src/app/service/api.service';
+import { Component } from '@angular/core';
+import { Recipe } from 'src/app/my-list/recipe.model';
 import { UserDataService } from 'src/app/service/user-data.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-recipes-list',
-  templateUrl: './recipes-list.component.html',
-  styleUrls: ['./recipes-list.component.css']
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.css']
 })
-export class RecipesListComponent implements OnInit, OnDestroy {
+export class TableComponent {
 
+  colNames:string[] = ['#','Recipe Name','Preparation Time','Delete'];
   isLoading = false;
   isError = false;
   recipes: Recipe[] = [];
@@ -20,7 +20,7 @@ export class RecipesListComponent implements OnInit, OnDestroy {
   private subscriptionError: Subscription;
   private subscriptionData: Subscription;
 
-  constructor(private apiService: ApiService, private userData: UserDataService) { }
+  constructor(private userData: UserDataService) { }
 
   ngOnInit(): void {
     this.userData.initializeRecipeData();
@@ -38,11 +38,11 @@ export class RecipesListComponent implements OnInit, OnDestroy {
       console.log('Received recipes value:', value);
     });
   }
-
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions in ngOnDestroy
     this.subscriptionLoading.unsubscribe();
     this.subscriptionError.unsubscribe();
     this.subscriptionData.unsubscribe();
   }
+
 }
