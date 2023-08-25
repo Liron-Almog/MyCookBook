@@ -42,7 +42,8 @@ router.get('/get-items',(req,res) =>{
 })
 
 router.post('/add-recipe',(req,res) =>{
-  console.log();
+  console.log('ssss');
+  console.log(req.data);
   res.status(200)
 })
 
