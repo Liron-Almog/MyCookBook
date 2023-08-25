@@ -17,10 +17,8 @@ export class ApiService{
     delete(pathAndParams:string){
         return this.http.delete(this.url + pathAndParams);
     }
-    post(){
-        
+    post(path,body){   
+        return this.http.post(this.url + path,body);
     }
     
-
-
 }

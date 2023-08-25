@@ -3,10 +3,9 @@
           <div class="card-header">
             <h5 class="text-center">Recipe Name: {{recipe.name}}</h5>
             <hr>
-            <h6 style="display:inline">Preparation Time:	&nbsp;</h6>
-            <p style="display:inline">{{recipe.preparationTime}}</p>
-            
-          
+            <h6 style="display:inline">Preparation Time:	&nbsp;{{recipe.preparationTime}}</h6>
+            <h6 >Ingredients:	&nbsp; {{recipe.ingredients}}</h6>
+
           <div class="row justify-content-center">  
             <button class="mt-3 btn btn-primary collapsed col-6" data-bs-toggle="collapse" 
             [attr.data-bs-target]="'#' + recipe.id" aria-expanded="false" aria-controls="collapseThree">
@@ -18,7 +17,7 @@
           <div id="{{recipe.id}}" class="collapse"  data-bs-parent="#accordion">
             <div class="card-body">
               <h6>Instructions</h6>
-             {{recipe.Instructions}}
+             {{recipe.description}}
             </div>
           </div>
         </div>

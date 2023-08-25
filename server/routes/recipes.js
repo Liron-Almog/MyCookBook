@@ -6,18 +6,24 @@ const recipes = [
       id: 1,
       name: "Spaghetti Carbonara",
       preparationTime: "10:15:00",
-      description: "A classic Italian pasta dish with eggs, cheese, and pancetta."
+      ingredients: 12,
+      description: "A classic Italian pasta dish with eggs, cheese, and pancetta.",
+      // servings: 4,
+      // vegetarian: false,
+      // glutenFree: false,
     },
     {
       id: 2,
       name: "Chicken Stir-Fry",
       preparationTime: "15:20:00",
+      ingredients: 12,
       description: "A quick and delicious stir-fry recipe with chicken and vegetables."
     },
     {
       id: 3,
       name: "Chocolate Cake",
       preparationTime: "20:30:00",
+      ingredients: 12,
       description: "Indulge in a rich and moist chocolate cake."
     }
     ,
@@ -25,6 +31,7 @@ const recipes = [
       id: 4,
       name: " Cake",
       preparationTime: "20:30:00",
+      ingredients: 12,
       description: "Indulge in a rich and moist chocolate cake."
     }
   ];
@@ -33,6 +40,12 @@ const recipes = [
 router.get('/get-items',(req,res) =>{
    res.status(200).send(recipes)
 })
+
+router.post('/add-recipe',(req,res) =>{
+  console.log();
+  res.status(200)
+})
+
 router.delete('/delete-item/:id',(req,res) =>{
   const itemId = req.params.id;
   console.log(itemId);

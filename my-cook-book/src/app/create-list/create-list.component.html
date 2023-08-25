@@ -1,9 +1,59 @@
-<header>
-    <app-nav-bar></app-nav-bar>
-</header>
-<main>
+<div class="container">
+    <header>
+        <app-nav-bar></app-nav-bar>
+    </header>
+    <main>
+        <form (submit)="onSubmit(f)" #f="ngForm" class="mt-3">
+            <div class="row justify-content-center mt-2">
+                <div class="form-group col-md-5 col-12">
+                    <label for="recipeName">Recipe Name</label>
+                    <input ngModel type="text" class="form-control" id="recipeName" ngModel name="recipeName" placeholder="Recipe Name">
+                </div>
+                <div class="col-md-5 col-12">
+                    <label for="preparationTime">Preparation Time</label>
+                    <input ngModel name="preparationTime" type="time" class="form-control" id="preparationTime" placeholder="Preparation Time">
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-5 col-12 mt-2">
+                    <label for="description">Description</label>
+                    <textarea name="description" ngModel id="description" class="form-control" placeholder="Enter Description"></textarea>
+                </div>
+       
+                <div class="col-md-5 col-11 mt-2">
+                    <div class="row">
+                        <label for="Servings">Servings</label>
+                        <input ngModel name="servings"  type="number" id="Servings" class="form-control" placeholder="Enter Servings" min="1" max="100000" step="1.0">
+                    </div>
 
-</main>
-<footer>
+                    <div class="row justify-content-center">
+                        <div class="form-check col-md-6 col-3 mt-1">
+                            <input  name="vegetarian" ngModel type="checkbox" class="form-check-input" id="vegetarian">
+                            <label class="form-check-label" for="vegetarian">Vegetarian</label>
+                        </div>
+                        <div class="form-check col-md-6 col-3 mt-1">
+                            <input name="glutenFree" ngModel type="checkbox" class="form-check-input" id="glutenFree">
+                            <label class="form-check-label" for="glutenFree">glutenFree</label>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+            
+            <hr class="mt-5 mx-auto" width="80%">
+            
+            <app-add-ingredient (newIngredient)="addIngredient($event)" ></app-add-ingredient>
 
-</footer>
+            <div *ngIf="ingredientsArray.length > 0" class="row justify-content-center">
+                <app-ingredient-table class="col-10" [ingredientsArray]="ingredientsArray"></app-ingredient-table>
+            </div>
+         
+
+            <div class="row justify-content-center mt-5">
+                <button type="submit" class="btn col-md-3 col-10 btn-primary">Submit</button>
+            </div>
+        </form>
+        <button  class="btn btn-danger m-3"  (click)="onResetIngredients()">Reset Ingredient</button>
+    </main>
+    <footer></footer>
+</div>

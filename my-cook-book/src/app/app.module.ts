@@ -12,6 +12,9 @@ import { RecipesListComponent } from './my-list/recipes-list/recipes-list.compon
 import { RecipeItemComponent } from './my-list/recipe-item/recipe-item.component';
 import {HttpClientModule} from '@angular/common/http';
 import { TableComponent } from './edit-lists/table/table.component';
+import { FormsModule } from '@angular/forms';
+import { AddIngredientComponent } from './create-list/add-ingredient/add-ingredient.component';
+import { IngredientTableComponent } from './create-list/ingredient-table/ingredient-table.component';
 
 
 
@@ -27,11 +30,14 @@ import { TableComponent } from './edit-lists/table/table.component';
     RecipesListComponent,
     RecipeItemComponent,
     TableComponent,
+    AddIngredientComponent,
+    IngredientTableComponent,
 
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule
   ],

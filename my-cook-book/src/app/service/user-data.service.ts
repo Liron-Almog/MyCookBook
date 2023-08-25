@@ -8,7 +8,8 @@ import { Recipe } from '../my-list/recipe.model';
 @Injectable({providedIn:"root"})
 export class UserDataService implements OnDestroy{
 
-  subscriptionDelete:Subscription;
+    subscriptionPost:Subscription;
+    subscriptionDelete:Subscription;
     subscription:Subscription;
     isError = new Subject<boolean>();
     isLoading = new Subject<boolean>();
@@ -37,9 +38,8 @@ export class UserDataService implements OnDestroy{
             console.error('An error occurred:', error);
           }
         );
-
-      
     }
+
     fetchRecipes(){
         this.isLoading.next(true);
         this.subscription = this.apiService.get('/recipes/get-items').subscribe(
@@ -57,12 +57,28 @@ export class UserDataService implements OnDestroy{
           }
         );
     }
+    postRecipe(body){
+
+      this.subscriptionPost = this.apiService.post('/recipes/add-recipe',body).subscribe(
+        (data) => {
+          // Success case
+          this.isLoading.next(false);
+        },
+        (error) => {
+          // Error case
+          this.isLoading.next(false);
+          this.isError.next(true);
+        }
+    );
+
+    }
     initializeRecipeData() {
 
-        this.fetchRecipes()
+      this.fetchRecipes()
 
     }
       ngOnDestroy() {
+        this.subscriptionPost.unsubscribe();
         this.subscription.unsubscribe();
         this.subscriptionDelete.unsubscribe();
       }
