@@ -1,27 +1,29 @@
+
+<h1>My Recipes</h1>
 <div class="row justify-content-center">
-  <div class="col-10">
+  <div class="col-md-8 col-10">
 
-  <div *ngIf="isError" class="alert alert-danger row" role="alert">
-    Something Went Worng...
-  </div>
+    <div *ngIf="isError" style="display: inline;" class="alert alert-danger row" role="alert">
+      Something Went Wrong...
+    </div>
 
-  <div class="row justify-content-center mt-3">
-     <div *ngIf="isLoading" class="spinner-border" role="status"></div>
-  </div>
-<table *ngIf="!isLoading" class="table mt-5 table-dark table-striped" >
-    <thead>
-      <tr>
-        <th *ngFor="let field of colNames" scope="col">{{field}}</th>
-      </tr>
-    </thead>
-    <tbody >
-        <tr  *ngFor="let recipeElement  of recipes; let i = index" [recipe]="recipeElement">
+    <div *ngIf="isLoading" class="spinner-border mx-auto"  role="status"></div>
+
+
+    <table *ngIf="!isLoading" class="table mt-5 table-hover">
+      <thead>
+        <tr>
+          <th *ngFor="let field of colNames" scope="col">{{field}}</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let recipeElement of recipes; let i = index"  [recipe]="recipeElement">
           <th scope="row">{{i + 1}}</th>
           <td>{{recipeElement.name}}</td>
           <td>{{recipeElement.preparationTime}}</td>
-          <td><button class="btn btn-danger" id="{{recipeElement.id}}" (click)="onDeleteClick($event)" >Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+          <td><button class="btn delete-btns" id="{{recipeElement.id}}" (click)="onDeleteClick($event)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
