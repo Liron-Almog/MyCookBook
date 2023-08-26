@@ -38,13 +38,17 @@ const recipes = [
   
 
 router.get('/get-items',(req,res) =>{
-   res.status(200).send(recipes)
+   res.status(200).send(recipes);
 })
 
 router.post('/add-recipe',(req,res) =>{
-  console.log('ssss');
-  console.log(req.data);
-  res.status(200)
+
+  const {recipeName,preparationTime,description} = req.body;
+
+  if(!recipeName || !preparationTime || !description)
+    res.status(404).send();
+
+  res.status(200).send()
 })
 
 router.delete('/delete-item/:id',(req,res) =>{
