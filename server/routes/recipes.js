@@ -1,5 +1,10 @@
 const express = require('express')
 const router = express.Router();
+const db = require('../config/db'); // Adjust the path if needed
+
+
+
+
 
 const recipes = [
     {
@@ -37,7 +42,17 @@ const recipes = [
   ];
   
 
-router.get('/get-items',(req,res) =>{
+router.get('/get-items', async (req,res) =>{
+
+  try{
+    const connection =  db.connect();
+    // const [data] = await connection.query('SELECT * FROM recipes');
+    //console.log(connection);
+  }
+  catch(err){
+    console.log(err);
+  }
+
    res.status(200).send(recipes);
 })
 
