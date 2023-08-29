@@ -16,7 +16,7 @@ export class UserDataService implements OnDestroy{
     subscriptionPostIng:Subscription;
     isError = new Subject<boolean>();
     isLoading = new Subject<boolean>();
-    recipes = new Subject<Recipe[]>();
+    recipes = new Subject<[]>();
     ingredients = new Subject<Ingredient[]>();
 
     
@@ -31,9 +31,6 @@ export class UserDataService implements OnDestroy{
       this.isLoading.next(true);
         this.subscriptionDelete = this.apiService.delete(pathAndParams).subscribe(
           () => {
-            console.log("hereeeeee");
-            
-            // Success case
             this.isLoading.next(false);
             this.fetchRecipes();
           },
@@ -71,10 +68,8 @@ export class UserDataService implements OnDestroy{
         this.isLoading.next(true);
         this.subscription = this.apiService.get('/recipes/get-items').subscribe(
           (data) => {
-            // Success case
             this.isLoading.next(false);
             this.recipes.next(data);
-            console.log(data);
           },
           (error) => {
             // Error case
@@ -93,6 +88,8 @@ export class UserDataService implements OnDestroy{
           this.isLoading.next(false);
           this.ingredients.next(data);
           console.log(data);
+
+
         },
         (error) => {
           // Error case
@@ -131,3 +128,4 @@ export class UserDataService implements OnDestroy{
       }
       
 }
+

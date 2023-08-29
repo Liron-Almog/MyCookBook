@@ -1,26 +1,30 @@
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
 
 class Database {
+
   constructor() {
+    // Initialize the connection as null
     this.connection = null;
-    this.connect();
   }
 
   async connect() {
     try {
       if (this.connection === null) {
+        // Create the connection if it doesn't exist
         this.connection = await mysql.createConnection({
-          host: '127.0.0.1',
-          port: 3306,
+          host: 'localhost',
           user: 'root',
-          password:  'A316335a207a',
-          database: '' // Removed space in database name
+          port: '3306',
+          password: 'A316335207a',
+          database: 'recipe_management' // Removed space in database name
         });
-
+        
       }
+      
       return this.connection;
     } catch (err) {
       console.error('Error connecting to the database:', err);
+      throw err; // Rethrow the error to handle it elsewhere, if needed
     }
   }
 }

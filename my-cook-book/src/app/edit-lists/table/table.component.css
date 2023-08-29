@@ -13,3 +13,11 @@ h1{
     color: aliceblue;
     background-color: rgba(128, 30, 30, 0.989);
 }
+p{
+    font-weight: 600;
+    text-align: center;
+    font-size: 2rem;
+}
+
+
+

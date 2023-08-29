@@ -10,10 +10,10 @@ import { Subscription } from 'rxjs';
 })
 export class TableComponent {
 
-  colNames:string[] = ['#','Recipe Name','Preparation Time','Delete'];
+  colNames:string[] = ['#','Recipe Name','Preparation Time','Servings','Delete'];
   isLoading = false;
   isError = false;
-  recipes: Recipe[] = [];
+  recipes = [];
 
   // Declare subscriptions as class properties
   private subscriptionLoading: Subscription;
@@ -23,9 +23,7 @@ export class TableComponent {
   constructor(private userData: UserDataService) { }
 
   onDeleteClick(event:any) {
-    console.log(event.target.id);
     this.userData.deleteItem("/recipes/delete-item/"+ event.target.id);
-   
   }
 
   ngOnInit(): void {
@@ -41,6 +39,8 @@ export class TableComponent {
     });
     this.subscriptionData = this.userData.recipes.subscribe((value) => {
       this.recipes = value;
+      console.log(value);
+      
       console.log('Received recipes value:', value);
     });
   }

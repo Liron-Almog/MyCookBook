@@ -1,59 +1,28 @@
 const express = require('express')
 const router = express.Router();
 const db = require('../config/db'); // Adjust the path if needed
+let myConnection;
 
-
-
-
-
-const recipes = [
-    {
-      id: 1,
-      name: "Spaghetti Carbonara",
-      preparationTime: "10:15:00",
-      ingredients: 12,
-      description: "A classic Italian pasta dish with eggs, cheese, and pancetta.",
-      // servings: 4,
-      // vegetarian: false,
-      // glutenFree: false,
-    },
-    {
-      id: 2,
-      name: "Chicken Stir-Fry",
-      preparationTime: "15:20:00",
-      ingredients: 12,
-      description: "A quick and delicious stir-fry recipe with chicken and vegetables."
-    },
-    {
-      id: 3,
-      name: "Chocolate Cake",
-      preparationTime: "20:30:00",
-      ingredients: 12,
-      description: "Indulge in a rich and moist chocolate cake."
-    }
-    ,
-    {
-      id: 4,
-      name: " Cake",
-      preparationTime: "20:30:00",
-      ingredients: 12,
-      description: "Indulge in a rich and moist chocolate cake."
-    }
-  ];
-  
+(async () => {
+  try {
+    myConnection = await db.connect();
+    // Use myConnection for your database operations;
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+})();
 
 router.get('/get-items', async (req,res) =>{
 
+  
   try{
-    const connection =  db.connect();
-    // const [data] = await connection.query('SELECT * FROM recipes');
-    //console.log(connection);
+    const [rows] = await myConnection.execute('SELECT * FROM recipe_management.recipes');
+    res.status(200).send(rows);
   }
   catch(err){
+    res.status(400).sendStatus(err)
     console.log(err);
   }
-
-   res.status(200).send(recipes);
 })
 
 router.post('/add-recipe',(req,res) =>{
@@ -66,10 +35,17 @@ router.post('/add-recipe',(req,res) =>{
   res.status(200).send()
 })
 
-router.delete('/delete-item/:id',(req,res) =>{
-  const itemId = req.params.id;
-  console.log(itemId);
-  res.status(200).send()
+router.delete('/delete-item/:id', async (req, res) => {
+  try {
+    const recipeId = req.params.id;
+    if (!recipeId) 
+      throw new Error('Recipe ID is missing');
 
-})
+    await myConnection.execute(`DELETE FROM recipe_management.recipes WHERE recipe_id = ${recipeId}`);
+    console.log('here');
+    res.status(200).send('');
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
+});
 module.exports = router;

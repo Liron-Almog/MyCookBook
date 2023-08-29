@@ -1,4 +1,4 @@
-<table  class="table mt-5 table-dark table-striped" >
+<table  class="table mt-5" >
     <thead>
       <tr>
         <th *ngFor="let field of colNames" scope="col">{{field}}</th>
@@ -10,7 +10,8 @@
           <td>{{element.ingredient}}</td>
           <td>{{element.type}}</td>
           <td>{{element.quantity}}</td>
-          <td><button class="btn btn-danger" id="{{i}}" (click)="onDeleteClick(i)" >Delete</button></td>
+          <td><button class="btn delete-btns" id="{{i}}" (click)="onDeleteClick(i)">Delete</button></td>
       </tr>
     </tbody>
   </table>   
+<button  class="btn delete-btns m-3"  (click)="onResetIngredients()">Reset Ingredient</button>

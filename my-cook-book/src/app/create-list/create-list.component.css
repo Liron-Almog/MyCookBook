@@ -1,0 +1,11 @@
+.body{
+    min-height: 100vh;
+    background-image: linear-gradient(to left, var(--BGCOLOR),  rgba(200, 190, 190, 0.989));
+   
+}
+
+.submit{
+    background-color: #694097; 
+    color: aliceblue;
+    font-weight: 500;
+}

@@ -14,4 +14,8 @@ export class IngredientTableComponent {
   onDeleteClick(i:number){
     this.ingredientsArray.splice(i, 1);
   }
+
+  onResetIngredients(){
+    this.ingredientsArray.length = 0
+  }
 }

@@ -11,6 +11,10 @@ import { Subscription } from 'rxjs';
 })
 export class CreateListComponent implements OnDestroy, OnInit{
 
+
+  public START_STEP = 1;
+  public MAXIMUM_STEP = 2;
+  step:number = 1;
   isLoading = false;
   isError = false;
   ingredientsArray:Ingredient[] = []
@@ -33,6 +37,19 @@ export class CreateListComponent implements OnDestroy, OnInit{
     });
   }
 
+  onNext(){
+   
+
+    if(this.MAXIMUM_STEP > this.step)
+        this.step++;
+  }
+  onBack(){
+   
+
+    if(this.START_STEP < this.step)
+        this.step--;
+
+  }
   onSubmit(form:NgForm){
     //this.userData.postRecipe(form.value);
     this.userData.postIngredient(this.ingredientsArray);
@@ -42,9 +59,7 @@ export class CreateListComponent implements OnDestroy, OnInit{
   addIngredient(newIngredient: Ingredient) {
     this.ingredientsArray.push(newIngredient); 
   }
-  onResetIngredients(){
-    this.ingredientsArray = []
-  }
+
 
   ngOnDestroy(): void {
     // Unsubscribe from all subscriptions in ngOnDestroy
