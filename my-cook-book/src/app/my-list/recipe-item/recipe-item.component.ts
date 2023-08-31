@@ -1,4 +1,4 @@
-import { Component ,Input } from '@angular/core';
+import { Component ,Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -6,7 +6,17 @@ import { Recipe } from '../recipe.model';
   templateUrl: './recipe-item.component.html',
   styleUrls: ['./recipe-item.component.css']
 })
-export class RecipeItemComponent {
+export class RecipeItemComponent implements OnChanges{
 
-  @Input() recipe: Recipe;
+  @Input() recipe;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.recipe);
+    
+  }
+  changeBoolToString(val:number) :string{
+
+    return val === 1? 'Yes': 'No' ;
+  }
+
 }

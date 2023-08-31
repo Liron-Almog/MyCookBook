@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Subject ,Subscription} from 'rxjs';
 import { Recipe } from '../my-list/recipe.model';
 import { Ingredient } from '../create-list/ingredient.model';
+import { NgForm } from '@angular/forms';
 @Injectable({providedIn:"root"})
 export class UserDataService implements OnDestroy{
 
@@ -25,6 +26,17 @@ export class UserDataService implements OnDestroy{
         this.isLoading.next(false);
         this.recipes.next(null)
     }
+
+
+
+    postNewRecipe(data:NgForm,ingredients:Ingredient[]){
+      
+        this.postRecipe(data)
+        this.postIngredient(ingredients);
+    }
+
+
+
 
     deleteItem(pathAndParams:string){
 

@@ -44,16 +44,15 @@ export class CreateListComponent implements OnDestroy, OnInit{
         this.step++;
   }
   onBack(){
-   
-
+  
     if(this.START_STEP < this.step)
         this.step--;
 
   }
   onSubmit(form:NgForm){
-    //this.userData.postRecipe(form.value);
-    this.userData.postIngredient(this.ingredientsArray);
     console.log(form.value);
+    
+    this.userData.postNewRecipe(form.value,this.ingredientsArray);
   }
 
   addIngredient(newIngredient: Ingredient) {

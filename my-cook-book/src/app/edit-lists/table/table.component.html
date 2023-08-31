@@ -1,5 +1,4 @@
 
-<h1>My Recipes</h1>
 <div class="row justify-content-center">
 
     <div *ngIf="isError" style="display: inline;" class=" mt-1 col-md-8 col-12 alert alert-danger row" role="alert">
@@ -11,7 +10,7 @@
     <p *ngIf="recipes.length == 0" class="text-danger">Your list is empty...</p>
 
     <div *ngIf="recipes.length > 0">
-    <table *ngIf="!isLoading" class="table table-responsive col-md-8 col-10 mt-2 table-hover">
+    <table *ngIf="!isLoading" class="table table-responsive-sm col-md-8 col-10 mt-2 table-hover">
       <thead>
         <tr>
           <th *ngFor="let field of colNames" scope="col">{{field}}</th>

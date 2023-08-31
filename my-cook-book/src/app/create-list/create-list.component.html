@@ -1,4 +1,4 @@
-<div class="body">
+<div class="body p-3">
         <header>
             <app-nav-bar></app-nav-bar>
         </header>
@@ -14,36 +14,45 @@
                 <h2 class="text-center mt-4 mb-3">New Recipe Form</h2>
                 <form (submit)="onSubmit(f)" #f="ngForm" class="mt-3">
     
-                    <div *ngIf="step == 1" class="row justify-content-center mt-2">
+                    <div [hidden]="step != 1" class="row justify-content-center mt-2">
                         <div class="col-md-5 col-12">
                             <div class="form-group">
                                 <label for="recipeName">Recipe Name</label>
-                                <input ngModel type="text" class="form-control" id="recipeName" ngModel name="recipeName" placeholder="Recipe Name">
+                                <input  ngModel type="text" class="form-control" 
+                                id="recipeName" ngModel name="recipeName" placeholder="Recipe Name" required>
                             </div>
                             
+                            <div class="row">
+                                <div  class="form-group mt-1 col-6">
+                                    <label for="preparationTime">Preparation Time</label>
+                                    <input required  ngModel name="preparationTime" type="time" class="form-control" id="preparationTime" placeholder="Preparation Time">
+                                </div>
+                                
+                                <div  class="form-group mt-1 col-6">
+                                    <label for="Servings">Servings</label>
+                                    <input required ngModel name="servings"  type="number" id="Servings" class="form-control" placeholder="Enter Servings" min="1" max="100000" step="1.0">
+                                </div>
+                            </div>
+
                             <div  class="form-group mt-1">
-                                <label for="preparationTime">Preparation Time</label>
-                                <input ngModel name="preparationTime" type="time" class="form-control" id="preparationTime" placeholder="Preparation Time">
+                                <label for="urlPhoto">Url photo</label>
+                                <input required ngModel name="urlPhoto" id="urlPhoto" class="form-control" placeholder="Enter Url Photo">
                             </div>
                             
                             <div  class="form-group mt-1">
                                 <label for="description">Description</label>
-                                <textarea name="description" ngModel id="description" class="form-control" placeholder="Enter Description"></textarea>
+                                <textarea required name="description" ngModel id="description" class="form-control" placeholder="Enter Description"></textarea>
                             </div>
-                            
-                            <div  class="form-group mt-1">
-                                <label for="Servings">Servings</label>
-                                <input ngModel name="servings"  type="number" id="Servings" class="form-control" placeholder="Enter Servings" min="1" max="100000" step="1.0">
-                            </div>
-                            
+
+
                             <div class="row justify-content-center mt-3">
                                 <div class="form-check col-md-3 col-4">
-                                    <input  name="vegetarian" ngModel type="checkbox" class="form-check-input" id="vegetarian">
+                                    <input required name="vegetarian" ngModel type="checkbox" class="form-check-input" id="vegetarian">
                                     <label class="form-check-label" for="vegetarian">Vegetarian</label>
                                 </div>
                                 
                                 <div class="form-check col-md-3 col-4">
-                                    <input name="glutenFree" ngModel type="checkbox" class="form-check-input" id="glutenFree">
+                                    <input required name="glutenFree" ngModel type="checkbox" class="form-check-input" id="glutenFree">
                                     <label class="form-check-label" for="glutenFree">glutenFree</label>
                                 </div>
                             </div>

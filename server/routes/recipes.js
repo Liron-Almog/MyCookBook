@@ -4,12 +4,14 @@ const db = require('../config/db'); // Adjust the path if needed
 let myConnection;
 
 (async () => {
+
   try {
     myConnection = await db.connect();
     // Use myConnection for your database operations;
   } catch (error) {
     console.error('An error occurred:', error);
   }
+  
 })();
 
 router.get('/get-items', async (req,res) =>{
@@ -25,15 +27,38 @@ router.get('/get-items', async (req,res) =>{
   }
 })
 
-router.post('/add-recipe',(req,res) =>{
+router.post('/add-recipe',async (req,res) =>{
 
-  const {recipeName,preparationTime,description} = req.body;
+  
+  try {
 
-  if(!recipeName || !preparationTime || !description)
-    res.status(404).send();
+    myConnection = await db.connect();
+    let { recipeName, preparationTime, description, servings, vegetarian, glutenFree,urlPhoto } = req.body;
+    glutenFree = glutenFree ? true : false;
+    vegetarian = vegetarian ? true : false;
 
-  res.status(200).send()
-})
+     console.log(recipeName, preparationTime, description, servings, vegetarian, glutenFree,urlPhoto );
+    if (!recipeName || !preparationTime|| !description || !servings|| !vegetarian|| !glutenFree|| !urlPhoto) {
+      res.status(404).send('');
+      return;
+    }
+  
+    const insertQuery = `
+      INSERT INTO recipes (user_id, recipe_name, preparation_time, description, servings, vegetarian, gluten_free,url_photo)
+      VALUES (?, ?, ?, ?, ?, ?, ?);
+    `;
+  
+    const values = [1, recipeName, preparationTime,
+             description, servings, vegetarian, glutenFree,urlPhoto];
+   await myConnection.execute(insertQuery, values);
+
+    res.status(200).send('');
+  } catch (error) {
+    // Handle error
+    console.error("Error inserting data:", error);
+  }
+  
+});
 
 router.delete('/delete-item/:id', async (req, res) => {
   try {
