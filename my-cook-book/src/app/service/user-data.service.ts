@@ -1,12 +1,10 @@
 
 import {Injectable, OnDestroy} from '@angular/core'
-import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import { map } from 'rxjs/operators';
 import { Subject ,Subscription} from 'rxjs';
-import { Recipe } from '../my-list/recipe.model';
 import { Ingredient } from '../create-list/ingredient.model';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 @Injectable({providedIn:"root"})
 export class UserDataService implements OnDestroy{
 
@@ -21,22 +19,11 @@ export class UserDataService implements OnDestroy{
     ingredients = new Subject<Ingredient[]>();
 
     
-    constructor(private apiService:ApiService){
+    constructor(private apiService:ApiService,private router:Router){
         this.isError.next(false); 
         this.isLoading.next(false);
         this.recipes.next(null)
     }
-
-
-
-    postNewRecipe(data:NgForm,ingredients:Ingredient[]){
-      
-        this.postRecipe(data)
-        this.postIngredient(ingredients);
-    }
-
-
-
 
     deleteItem(pathAndParams:string){
 
@@ -47,6 +34,8 @@ export class UserDataService implements OnDestroy{
             this.fetchRecipes();
           },
           (error) => {
+          
+            
             // Error case
             this.isLoading.next(false);
             this.isError.next(true);
@@ -57,19 +46,26 @@ export class UserDataService implements OnDestroy{
 
     postIngredient(ingredientsArray:Ingredient[]){
       
+      if(ingredientsArray.length === 0){
+        this.router.navigate(['/my-list']);
+        return;
+      }
+   
       this.isLoading.next(true);
         this.subscriptionPostIng = this.apiService.post('/ingredients/add',ingredientsArray).subscribe(
           () => {
    
             // Success case
             this.isLoading.next(false);
-            // this.fetchIngredients();
+       
+        
+            this.router.navigate(['/my-list']);
           },
           (error) => {
             // Error case
             this.isLoading.next(false);
             this.isError.next(true);
-
+            this.router.navigate(['/create-recipe']);
           }
         );
     }
@@ -91,10 +87,10 @@ export class UserDataService implements OnDestroy{
           }
         );
     }
-    fetchIngredients(){  
+    fetchIngredientsByRecipeId(id:number){  
 
       this.isLoading.next(true);
-      this.subscription = this.apiService.get('/ingredients/get-items').subscribe(
+      this.subscription = this.apiService.get('/ingredients/get-ingredient:'+ id).subscribe(
         (data) => {
           // Success case
           this.isLoading.next(false);
@@ -111,7 +107,7 @@ export class UserDataService implements OnDestroy{
         }
       );
   }
-    postRecipe(postData:any){
+  postNewRecipe(postData:any){
 
       this.subscriptionPost = this.apiService.post('/recipes/add-recipe',postData).subscribe(
         (data) => {

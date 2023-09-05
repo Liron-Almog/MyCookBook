@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Ingredient } from './ingredient.model';
 import { UserDataService } from '../service/user-data.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-list',
@@ -23,7 +24,7 @@ export class CreateListComponent implements OnDestroy, OnInit{
   private subscriptionLoading: Subscription;
   private subscriptionError: Subscription;
 
-  constructor(private userData: UserDataService){}
+  constructor(private userData: UserDataService,private router:Router){}
 
 
   ngOnInit(): void {
@@ -50,9 +51,9 @@ export class CreateListComponent implements OnDestroy, OnInit{
 
   }
   onSubmit(form:NgForm){
-    console.log(form.value);
-    
-    this.userData.postNewRecipe(form.value,this.ingredientsArray);
+ 
+    form.value.ingredients = this.ingredientsArray;
+    this.userData.postNewRecipe(form.value);
   }
 
   addIngredient(newIngredient: Ingredient) {

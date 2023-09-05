@@ -7,8 +7,8 @@ import { CreateListComponent } from './create-list/create-list.component';
 
 const routes: Routes = [
   {path:'home', component:HomeComponent},
-  {path:'my-lists', component:MyListComponent},
-  {path:'edit-lists', component:EditListsComponent},
+  {path:'my-list', component:MyListComponent},
+  {path:'edit-list', component:EditListsComponent},
   {path:'create-recipe', component:CreateListComponent}
 ];
 
