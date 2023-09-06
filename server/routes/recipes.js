@@ -41,7 +41,6 @@ router.post('/add-recipe', async (req, res) => {
     const [result] = await myConnection.execute(insertQuery, values);
     
     addIngredient(ingredients,result.insertId);
-  
 
     res.status(200).send('');
 
@@ -59,8 +58,8 @@ router.delete('/delete-item/:id', async (req, res) => {
     if (!recipeId) 
       throw new Error('Recipe ID is missing');
 
-    await myConnection.execute(`DELETE FROM recipe_management.recipes WHERE recipe_id = ${recipeId}`);
     await deleteIngredient(recipeId);
+    await myConnection.execute(`DELETE FROM recipe_management.recipes WHERE recipe_id = ${recipeId}`);
 
     console.log('here');
     res.status(200).send('');

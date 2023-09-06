@@ -5,20 +5,26 @@ let myConnection;
 
 
 
-router.get('/get-ingredient:id',(req,res) =>{
+router.get('/get-ingredient/:id',async (req,res) =>{
 
-  try{
+
+  try {
+    myConnection = await db.connect();
     const recipeId = req.params.id;
+    console.log(recipeId);
     
-    console.log('recipeId' , recipeId);
-    res.status(200).send(recipeId);
+    if (!recipeId) 
+      throw new Error('Recipe ID is missing');
 
-  }
-  catch(error){
-    res.status(400).send(error.message)
-    console.error("Error inserting data:", error);
-  }
 
+    console.log(recipeId);
+    const [data] = await myConnection.execute(`SELECT description,quantity,unit FROM recipe_management.ingredients WHERE recipe_id = ${recipeId}`);
+    
+    res.status(200).send(data);
+
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
  })
 
 module.exports = router;

@@ -17,7 +17,7 @@
           <div class="row justify-content-center">  
             <button class="mt-1 btn btn-primary collapsed col-6" data-bs-toggle="collapse" 
             [attr.data-bs-target]="'#' + recipe.recipe_id" aria-expanded="false" aria-controls="collapseThree">
-              Full Recipe
+              Description
             </button>
           </div>
           
@@ -25,7 +25,18 @@
           <div id="{{recipe.recipe_id}}" class="collapse"  data-bs-parent="#accordion">
             <div class="card-body">
               <h6>Description</h6>
-             {{recipe.description}}
+              <p>{{recipe.description}}</p>
+              <div *ngIf="ingredients.length > 0">
+                  <div *ngFor="let ingr of ingredients">
+                    <p>Ingredient:{{ingr.description}}</p>
+                    <p>quantity{{ingr.quantity}}</p>
+                    <p>Unit:{{ingr.unit}}</p>
+                </div>
+              </div>
+
+             <div class="row">
+               <button class="btn mt-2 btn-success col-6" (click)="onClickIngredients(recipe.recipe_id)">Ingredients</button>
+             </div>
             </div>
           </div>
         </div>
