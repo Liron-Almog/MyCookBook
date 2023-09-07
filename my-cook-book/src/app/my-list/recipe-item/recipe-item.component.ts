@@ -1,19 +1,32 @@
-import { Component ,Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component ,Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { UserDataService } from 'src/app/service/user-data.service';
 import { Ingredient } from 'src/app/create-list/ingredient.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-item',
   templateUrl: './recipe-item.component.html',
   styleUrls: ['./recipe-item.component.css']
 })
-export class RecipeItemComponent {
+export class RecipeItemComponent implements OnInit{
 
   @Input() recipe;
-  public ingredients = [];
+  public ingredients = null;
+
+  public isLoadingIngredients:boolean;
+  private subscriptionisLoadingIngredients: Subscription;
 
   constructor(private apiService:UserDataService){}
+
+
+  ngOnInit(): void {
+    // Assign the subscriptions in ngOnInit
+    this.subscriptionisLoadingIngredients = this.apiService.isLoadingIngredients.subscribe((value) => {
+      this.isLoadingIngredients = value;
+    });
+  }
+
 
   changeBoolToString(val:number) :string{
 
@@ -21,11 +34,14 @@ export class RecipeItemComponent {
   }
 
   async onClickIngredients(recipeId:number){
-    event.preventDefault(); // Prevent form submission
     this.ingredients = await this.apiService.getIngredientsByRecipeId(recipeId);
-    console.log('ing');
     console.log( this.ingredients);
     
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions in ngOnDestroy
+    this.subscriptionisLoadingIngredients.unsubscribe();
   }
 
 }

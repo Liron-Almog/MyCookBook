@@ -10,3 +10,7 @@ img{
 .card{
     padding: 8px;
 }
+
+.ingredients-btn{
+    border-radius: 50%;
+}

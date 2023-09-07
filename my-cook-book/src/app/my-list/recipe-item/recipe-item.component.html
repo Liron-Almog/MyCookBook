@@ -4,7 +4,7 @@
             <h5 class="text-center p-2">{{recipe.recipe_name}}</h5>
 
             <div class="row justify-content-center">
-              <img class="img-fluid col-11" width="50px" height="35px" src="{{recipe.url_photo}}" alt="">
+              <img class="img-fluid col-11" width="50px" height="38px" src="{{recipe.url_photo}}" alt="">
             </div>
             <!-- https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/03/14/14/pancakes-istock-stephaniefrey-.jpg?quality=75&width=990&crop=3%3A2%2Csmart&auto=webp -->
 
@@ -24,18 +24,26 @@
           </div>
           <div id="{{recipe.recipe_id}}" class="collapse"  data-bs-parent="#accordion">
             <div class="card-body">
-              <h6>Description</h6>
-              <p>{{recipe.description}}</p>
-              <div *ngIf="ingredients.length > 0">
-                  <div *ngFor="let ingr of ingredients">
-                    <p>Ingredient:{{ingr.description}}</p>
-                    <p>quantity{{ingr.quantity}}</p>
-                    <p>Unit:{{ingr.unit}}</p>
+              <div class="row">
+                <h6 class="col-8 pt-2">Description</h6>
+                <div class="col-4" *ngIf="ingredients === null">
+                  <button class="btn mt-2 btn-success ingredients-btn" (click)="onClickIngredients(recipe.recipe_id)">Ingrs</button>
                 </div>
+              </div>
+              <p>{{recipe.description}}</p>
+                  <div *ngFor="let ingr of ingredients">
+                    <p> <b>Ingredient:</b>&nbsp;{{ingr.description}}</p>
+                    <p> <b>quantity:</b>&nbsp;{{ingr.quantity}}</p>
+                    <p> <b>Unit:</b>&nbsp;{{ingr.unit}}</p>
+                    <hr>
               </div>
 
              <div class="row">
-               <button class="btn mt-2 btn-success col-6" (click)="onClickIngredients(recipe.recipe_id)">Ingredients</button>
+              <div *ngIf="isLoadingIngredients" class="sspinner-border">
+
+              </div>
+
+    
              </div>
             </div>
           </div>

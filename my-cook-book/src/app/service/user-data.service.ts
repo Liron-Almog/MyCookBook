@@ -13,10 +13,11 @@ export class UserDataService implements OnDestroy {
   subscriptionIngredients: Subscription;
   subscriptionPostIng: Subscription; // Make sure to define this subscription
 
+  isLoadingIngredients = new Subject<boolean>();
   isError = new Subject<boolean>();
   isLoading = new Subject<boolean>();
-  recipes = new Subject<any[]>(); // Use a more specific type than `[]`
-  ingredients;
+  recipes = new Subject<any[]>(); 
+  ingredients:any;
 
   constructor(private apiService: ApiService, private router: Router) {
     this.isError.next(false);
@@ -57,14 +58,14 @@ export class UserDataService implements OnDestroy {
 
   async getIngredientsByRecipeId(id: number) {
     
-    this.isLoading.next(true);
+    this.isLoadingIngredients.next(true);
     try {
       const data = await this.apiService.get('/ingredients/get-ingredient/' + id).toPromise();
-      this.isLoading.next(false);
+      this.isLoadingIngredients.next(false);
       return data;
     } 
     catch (error) {
-      this.isLoading.next(false);
+      this.isLoadingIngredients.next(false);
       this.isError.next(true);
     }
     
