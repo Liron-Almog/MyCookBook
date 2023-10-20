@@ -13,6 +13,11 @@ img{
     color: aliceblue;
     background-color: var(--FIRSTMAINCOLOR);
 }
+.cont{
+    max-width: 100vh;
+    max-height: 100vh;
+    background-image:url('background.jpg')
+}
 .btn{
     color: var(--BGCOLOR);
     font-weight: 600;
@@ -20,7 +25,8 @@ img{
 }
 .my-container{
     min-height:100vh;
-    background-color: var(--BGCOLOR);
+    background-image: url('background.jpg');
+    background-position: center;
 }
 
 p {
@@ -37,3 +43,13 @@ p {
 --FIRSTMAINCOLOR:#445069;
 --SECONDMAINDCOLOR:#5B9A8B;
 --THIRDMAINCOLOR:#F7E987; */
+
+.my-body{
+    display: flex;
+    min-height: 100vh;
+    max-height:100vh ;
+    background-image: url('background.jpg');
+    background-size: cover; /* Adjust to your preference */
+    background-repeat: no-repeat;
+    
+}
