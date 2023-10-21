@@ -1,0 +1,12 @@
+img{
+
+    margin-top: 7px;
+    border: 2px black solid;
+    border-radius: 40px;
+}
+
+h1{
+    font-size: 3rem;
+    text-align: center;
+    font-family: serif;
+}

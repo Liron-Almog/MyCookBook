@@ -1,55 +1,55 @@
-h1{
-   
-    color: var(--SECONDMAINCOLOR);
-    text-align: center;
-    font-weight: bolder;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+
+
+form{
+    border-radius: 10px;
+    padding: 20px;
+    padding-bottom: 10px;
+    background-color: #eae4e4e3;
 }
-img{
-    margin: 0;
-    padding: 0;
+.dont-have-account{
+    margin-top: 10px;
+    font-size: 0.8rem;
 }
 .btn:hover , .btn:focus{
     color: aliceblue;
     background-color: var(--FIRSTMAINCOLOR);
 }
-.cont{
-    max-width: 100vh;
-    max-height: 100vh;
-    background-image:url('background.jpg')
+.my-body{
+    width: 100%;
+    min-height: 100vh;
+    background-color:#F2F2F2;
 }
 .btn{
     color: var(--BGCOLOR);
     font-weight: 600;
     background-color: var(--THIRDMAINCOLOR);
 }
-.my-container{
-    min-height:100vh;
-    background-image: url('background.jpg');
-    background-position: center;
+
+
+
+h3{
+    text-align: center;
+    font-weight: 800;
 }
 
-p {
+
+.passin-sentence{
+    font-family: 'Brush Script MT';
+    font-size: 1.5rem;
     color: var(--SECONDMAINCOLOR);
     text-align: center;
-    font-weight: 500;
+   
+    color: #90908E;
+}
 
+.dont-have-account{
+    text-align: center;
+    font-weight: 500;
+   
 }
-.my-flex{
-    display: flex;
-    justify-content: center;
-}
+
+
 /* --BGCOLOR:#252B48;
 --FIRSTMAINCOLOR:#445069;
 --SECONDMAINDCOLOR:#5B9A8B;
 --THIRDMAINCOLOR:#F7E987; */
-
-.my-body{
-    display: flex;
-    min-height: 100vh;
-    max-height:100vh ;
-    background-image: url('background.jpg');
-    background-size: cover; /* Adjust to your preference */
-    background-repeat: no-repeat;
-    
-}

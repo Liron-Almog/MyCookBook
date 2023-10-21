@@ -4,12 +4,14 @@ import { HomeComponent } from './home/home.component';
 import { MyListComponent } from './my-list/my-list.component';
 import { EditListsComponent } from './edit-lists/edit-lists.component';
 import { CreateListComponent } from './create-list/create-list.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {path:'home', component:HomeComponent},
+  {path:'login', component:HomeComponent},
   {path:'my-list', component:MyListComponent},
   {path:'edit-list', component:EditListsComponent},
-  {path:'create-recipe', component:CreateListComponent}
+  {path:'create-recipe', component:CreateListComponent},
+  {path:'register', component:RegisterComponent}
 ];
 
 @NgModule({

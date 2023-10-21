@@ -3,7 +3,7 @@
 
     /*COLOR*/
     /* --BGCOLOR:#252B48; */
-    --BGCOLOR:#e3f2fd;
+    --BGCOLOR:#F2F2F2; 
     --FIRSTMAINCOLOR:#445069;
     --SECONDMAINDCOLOR:#5B9A8B;
     --THIRDMAINCOLOR:#252B48;
@@ -14,8 +14,4 @@
     
 }
 
-.title{
-    margin-top: 20px;
-    margin-left: 10px;
-    font-size: 1.8rem;
-}
+

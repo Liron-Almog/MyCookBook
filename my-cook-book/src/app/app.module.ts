@@ -15,6 +15,8 @@ import { TableComponent } from './edit-lists/table/table.component';
 import { FormsModule } from '@angular/forms';
 import { AddIngredientComponent } from './create-list/add-ingredient/add-ingredient.component';
 import { IngredientTableComponent } from './create-list/ingredient-table/ingredient-table.component';
+import { MyLogoComponent } from './my-logo/my-logo.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -32,6 +34,8 @@ import { IngredientTableComponent } from './create-list/ingredient-table/ingredi
     TableComponent,
     AddIngredientComponent,
     IngredientTableComponent,
+    MyLogoComponent,
+    RegisterComponent,
 
 
   ],
