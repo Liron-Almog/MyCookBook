@@ -30,8 +30,6 @@ router.post('/add-recipe', async (req, res) => {
     let { recipeName, preparationTime, description, servings, vegetarian, glutenFree, urlPhoto,ingredients} = req.body;
     glutenFree = glutenFree ? true : false;
     vegetarian = vegetarian ? true : false;
-
-    console.log(recipeName, preparationTime, description, servings, vegetarian, glutenFree, urlPhoto);
     
     const insertQuery = `
       INSERT INTO recipes (user_id, recipe_name, preparation_time, description, servings, vegetarian, gluten_free, url_photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?);

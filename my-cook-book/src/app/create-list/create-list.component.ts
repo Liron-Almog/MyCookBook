@@ -15,10 +15,10 @@ export class CreateListComponent implements OnDestroy, OnInit{
 
   public START_STEP = 1;
   public MAXIMUM_STEP = 2;
-  step:number = 1;
-  isLoading = false;
-  isError = false;
-  ingredientsArray:Ingredient[] = []
+  public step:number = 1;
+  public isLoading = false;
+  public isError = false;
+  public ingredientsArray:Ingredient[] = []
 
   // Declare subscriptions as class properties
   private subscriptionLoading: Subscription;
