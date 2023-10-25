@@ -1,28 +1,24 @@
-
-<nav class="navbar navbar-expand-sm ">
-    
-    <button data-bs-toggle="collapse" 
-            data-bs-target="#navBarNav"
-             type="button" 
-             class="navbar-toggler"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            aria-controls="navBarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse d-flex justify-content-center" id="navBarNav" >
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" aria-current="page" routerLink="/my-list">My List</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/create-recipe">Create Recipe</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/edit-list">Edit List</a>
-        </li>
-      </ul>
-    </div>
+<nav class="navbar navbar-expand-sm">
+  <button data-bs-toggle="collapse" 
+          data-bs-target="#navBarNav"
+          type="button" 
+          class="navbar-toggler"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          aria-controls="navBarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center" id="navBarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" aria-current="page" routerLink="/my-list">My List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/create-recipe">Create Recipe</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/edit-list">Edit List</a>
+      </li>
+    </ul>
+  </div>
 </nav>
