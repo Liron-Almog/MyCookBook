@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserAuthService } from '../service/UserAuth.service';
+import { UserAuthService } from '../service/userAuth.service';
 import { Subscription } from 'rxjs';
 
 @Component({

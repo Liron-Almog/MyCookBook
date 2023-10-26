@@ -20,7 +20,7 @@ export class RecipesListComponent implements OnInit, OnDestroy {
   private subscriptionData: Subscription;
 
 
-  constructor(private apiService: ApiService, private userData: UserDataService) { }
+  constructor(private userData: UserDataService) { }
 
   ngOnInit(): void {
     this.userData.initializeRecipeData();

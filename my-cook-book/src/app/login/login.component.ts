@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UserAuthService } from '../service/UserAuth.service';
+import { UserAuthService } from '../service/userAuth.service';
+
 
 
 

@@ -35,7 +35,7 @@ export class RecipeItemComponent implements OnInit{
 
   async onClickIngredients(recipeId:number){
     this.ingredients = await this.apiService.getIngredientsByRecipeId(recipeId);
-    console.log( this.ingredients);
+  
     
   }
 
