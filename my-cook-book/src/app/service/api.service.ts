@@ -6,13 +6,14 @@ import { Observable } from 'rxjs';
 export class ApiService{
 
     private url = `http://localhost:3000`;
+    private options = { withCredentials: true };
     constructor(private http:HttpClient){}
 
     setUrl(newUrl:string){
         this.url = newUrl;
     }
     get(pathAndParams:string) :Observable<any> { 
-        return this.http.get(this.url + pathAndParams);
+        return this.http.get(this.url + pathAndParams,{ withCredentials: true });
     }
     delete(pathAndParams:string){
         return this.http.delete(this.url + pathAndParams);

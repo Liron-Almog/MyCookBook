@@ -3,11 +3,12 @@ import {Injectable, OnDestroy} from '@angular/core'
 import { Subject, Subscription } from 'rxjs';
 import { ApiService } from "./api.service";
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({providedIn:"root"})
 export class UserAuthService implements OnDestroy{
 
-    constructor(private apiService: ApiService, private router: Router){}
+    constructor(private apiService: ApiService, private router: Router,private cookieService:CookieService){}
 
     public errorMessageLogin = new Subject<string>();
     public errorMessageRegister = new Subject<string>();
@@ -20,9 +21,10 @@ export class UserAuthService implements OnDestroy{
       this.isLoading.next(true);
     
       this.subscriptionLogin = this.apiService.post('/login', pathAndParams).subscribe(
-        () => {
+        (data) => {
           // Successful login
           this.isLoading.next(false);
+          this.cookieService.set('token',JSON.stringify(data));
           this.router.navigate(['/my-list']);
         },
         (error) => {
