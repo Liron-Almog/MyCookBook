@@ -38,12 +38,14 @@ export class UserAuthService implements OnDestroy{
     register(pathAndParams: string){
 
       this.subscriptionRegister = this.apiService.post('/register', pathAndParams).subscribe(
-        () => {
+        (data) => {
           // Successful register
           this.isLoading.next(false);
           this.router.navigate(['/login']);
         },
         (error) => {
+          console.log('hereeeeeeeeee');
+          
           // Error case
           this.isLoading.next(false);
           this.errorMessageRegister.next(error.error);

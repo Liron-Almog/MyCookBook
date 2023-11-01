@@ -19,7 +19,7 @@ export class ApiService{
         return this.http.delete(this.url + pathAndParams);
     }
     post(path:string,postData:any){   
-        return this.http.post(this.url + path,postData);
+        return this.http.post(this.url + path,postData,{ withCredentials: true });
     }
     
 }
