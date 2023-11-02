@@ -14,8 +14,7 @@ router.post('/',async (req,res) =>{
 
     let { email, password} = req.body;
 
-  
-    if(validator.isEmpty(email,password))
+    if(validator.isEmpty(email,password) || !validator.isEmail(email))
       throw new Error(validator.getMessage());
 
     myConnection = await db.connect();
@@ -31,11 +30,9 @@ router.post('/',async (req,res) =>{
     if(validator.getMessage())
       throw new Error(validator.getMessage());
     
-    const token = jwt.sign({email:email}, secretKey, { algorithm: 'HS256' });
-    res.cookie('testCookie', 'testValue', { httpOnly: true, secure: false });
+    const token = jwt.sign(email, secretKey, { algorithm: 'HS256' });
+    res.status(200).json({ token }); // Send the JWT as a JSON response
 
-
-    res.status(200).send('');
 
   } catch (err) {
     res.status(400).send(err.message);

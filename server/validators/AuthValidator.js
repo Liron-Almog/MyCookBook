@@ -21,10 +21,13 @@ function AuthValidtor(){
         return message.length > 0;
     }
       
-    function validatorEmail(email){
+    function isEmail(email){
 
-        if(!validator.isEmail(email))
+        if(!validator.isEmail(email)){
             message = 'The email is invalid';
+            return false;
+        }
+        return true;
     }
 
     function arePasswordsEqual(...passwords){
@@ -38,7 +41,7 @@ function AuthValidtor(){
     }
     return {
         getMessage,
-        validatorEmail,
+        isEmail,
         arePasswordsEqual,
         isEmpty,
         isThereError,
