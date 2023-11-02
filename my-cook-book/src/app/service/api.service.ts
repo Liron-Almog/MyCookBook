@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 export class ApiService{
 
     private url = `http://localhost:3000`;
-    private options = { withCredentials: true };
     constructor(private http:HttpClient){}
 
     setUrl(newUrl:string){
