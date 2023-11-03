@@ -18,7 +18,7 @@ app.use(cors({
     credentials: true,
   }));
 
-app.use('/recipes',recipeRouter)
+app.use('/recipes',authorization,recipeRouter)
 app.use('/ingredients',ingredientRouter)
 app.use('/login',loginRouter)
 app.use('/register',registerRouter)
@@ -27,15 +27,23 @@ app.listen(PORT)
 
 function authorization(req, res, next) {
 
-    // const token = JSON.parse(req.cookies.token).token
-    // const secretKey = 'qqwewdxc'
-    // console.log(token);
-    // jwt.verify(token, secretKey, (err, decoded) => {
-    //     if (err) {
-    //       res.status(200).sent('');
-    //     } else {
-    //       next(); // Continue processing the request
-    //     }
-    //   });
+
+    if(req.cookies.token === undefined){
+      return res.redirect('/login');
+
+    }
+
+   
+    const token = JSON.parse(req.cookies.token).token
+    const secretKey = 'qqwewdxc'
+    console.log(token);
+    jwt.verify(token, secretKey, (err, decoded) => {
+        if (err) {
+          console.log('falied');
+          res.redirect('/login');
+        } else {
+          next(); // Continue processing the request
+        }
+      });
 
   }

@@ -17,6 +17,7 @@ import { AddIngredientComponent } from './create-list/add-ingredient/add-ingredi
 import { IngredientTableComponent } from './create-list/ingredient-table/ingredient-table.component';
 import { MyLogoComponent } from './my-logo/my-logo.component';
 import { RegisterComponent } from './register/register.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -36,6 +37,7 @@ import { RegisterComponent } from './register/register.component';
     IngredientTableComponent,
     MyLogoComponent,
     RegisterComponent,
+    PageNotFoundComponent,
 
 
   ],

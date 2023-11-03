@@ -5,13 +5,15 @@ import { MyListComponent } from './my-list/my-list.component';
 import { EditListsComponent } from './edit-lists/edit-lists.component';
 import { CreateListComponent } from './create-list/create-list.component';
 import { RegisterComponent } from './register/register.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'my-list', component:MyListComponent},
   {path:'edit-list', component:EditListsComponent},
   {path:'create-recipe', component:CreateListComponent},
-  {path:'register', component:RegisterComponent}
+  {path:'register', component:RegisterComponent},
+  {path:'**', component:PageNotFoundComponent}
 ];
 
 @NgModule({
