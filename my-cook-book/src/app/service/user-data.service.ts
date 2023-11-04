@@ -47,8 +47,7 @@ export class UserDataService implements OnDestroy {
         this.isLoading.next(false);
         this.recipes.next(data);
       },
-      (error) => {
-        // Error case
+      (error) => { 
         this.isLoading.next(false);
         this.isError.next(true);
         console.error('An error occurred:', error);
@@ -85,6 +84,8 @@ export class UserDataService implements OnDestroy {
       }
     );
   }
+
+  
 
   initializeRecipeData() {
     this.fetchRecipes();

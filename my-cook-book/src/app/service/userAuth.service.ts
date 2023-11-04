@@ -10,21 +10,29 @@ export class UserAuthService implements OnDestroy{
 
     constructor(private apiService: ApiService, private router: Router,private cookieService:CookieService){}
 
+    public isLogin = false;
     public errorMessageLogin = new Subject<string>();
     public errorMessageRegister = new Subject<string>();
     public isLoading = new Subject<boolean>();
 
+    subscriptionIsLogin: Subscription
     subscriptionRegister: Subscription;
     subscriptionLogin: Subscription; // Make sure to define this subscription
 
+    logout(){
+      this.cookieService.delete('token');
+      this.isLogin = false;
+    }
+  
     login(pathAndParams: string): void {
+      
       this.isLoading.next(true);
-    
       this.subscriptionLogin = this.apiService.post('/login', pathAndParams).subscribe(
         (data) => {
           // Successful login
           this.isLoading.next(false);
           this.cookieService.set('token',JSON.stringify(data));
+          this.isLogin = true;
           this.router.navigate(['/my-list']);
         },
         (error) => {
@@ -33,6 +41,10 @@ export class UserAuthService implements OnDestroy{
           this.errorMessageLogin.next(error.error);
         }
       );
+    }
+
+    isUserLoggedIn() : boolean{
+      return this.isLogin;
     }
 
     register(pathAndParams: string){
@@ -44,24 +56,25 @@ export class UserAuthService implements OnDestroy{
           this.router.navigate(['/login']);
         },
         (error) => {
-          console.log('hereeeeeeeeee');
           
           // Error case
           this.isLoading.next(false);
           this.errorMessageRegister.next(error.error);
         }
       );
-
     }
     
-
-
 
     ngOnDestroy() {
       // Check if there is an active subscription for login, and if so, unsubscribe from it.
       if (this.subscriptionLogin) {
         this.subscriptionLogin.unsubscribe();
       }
+      if (this.subscriptionIsLogin) {
+        this.subscriptionIsLogin.unsubscribe();
+      }
+
+      
     
       // Check if there is an active subscription for registration, and if so, unsubscribe from it.
       if (this.subscriptionRegister) {

@@ -15,7 +15,7 @@ export class ApiService{
         return this.http.get(this.url + pathAndParams,{ withCredentials: true });
     }
     delete(pathAndParams:string){
-        return this.http.delete(this.url + pathAndParams);
+        return this.http.delete(this.url + pathAndParams, { withCredentials: true });
     }
     post(path:string,postData:any){   
         return this.http.post(this.url + path,postData,{ withCredentials: true });

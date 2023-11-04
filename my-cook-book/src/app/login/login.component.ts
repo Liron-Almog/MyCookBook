@@ -4,15 +4,12 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserAuthService } from '../service/userAuth.service';
 
-
-
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements  OnInit, OnDestroy{
 
     // Declare subscriptions as class properties
@@ -22,8 +19,7 @@ export class LoginComponent implements  OnInit, OnDestroy{
   public isLoading = false;
   public errorMessage = "";
 
-  constructor(private router:Router,private userAuthAPI:UserAuthService){
-  }
+  constructor(private router:Router,private userAuthAPI:UserAuthService){}
 
   ngOnInit(): void {
 

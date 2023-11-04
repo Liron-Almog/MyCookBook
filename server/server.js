@@ -13,11 +13,11 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: 'http://localhost:4200',
-    credentials: true,
-  }));
-
+const corsOptions = {
+  origin: 'http://localhost:4200', 
+  credentials: true, // Allow credentials (e.g., cookies)
+};
+app.use(cors(corsOptions));
 app.use('/recipes',authorization,recipeRouter)
 app.use('/ingredients',ingredientRouter)
 app.use('/login',loginRouter)
@@ -27,12 +27,10 @@ app.listen(PORT)
 
 function authorization(req, res, next) {
 
-
     if(req.cookies.token === undefined){
-      return res.redirect('/login');
-
+      res.status(401);
+      return;
     }
-
    
     const token = JSON.parse(req.cookies.token).token
     const secretKey = 'qqwewdxc'
@@ -40,7 +38,7 @@ function authorization(req, res, next) {
     jwt.verify(token, secretKey, (err, decoded) => {
         if (err) {
           console.log('falied');
-          res.redirect('/login');
+          res.status(401);
         } else {
           next(); // Continue processing the request
         }

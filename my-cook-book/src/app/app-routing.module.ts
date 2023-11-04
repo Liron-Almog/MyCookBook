@@ -6,14 +6,16 @@ import { EditListsComponent } from './edit-lists/edit-lists.component';
 import { CreateListComponent } from './create-list/create-list.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AutoGuard } from './service/auto-guard.service';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
-  {path:'my-list', component:MyListComponent},
-  {path:'edit-list', component:EditListsComponent},
-  {path:'create-recipe', component:CreateListComponent},
+  {path:'my-list',canActivate:[AutoGuard], component:MyListComponent},
+  {path:'edit-list',canActivate:[AutoGuard], component:EditListsComponent},
+  {path:'create-recipe',canActivate:[AutoGuard], component:CreateListComponent},
   {path:'register', component:RegisterComponent},
-  {path:'**', component:PageNotFoundComponent}
+  {path:'not-found', component:PageNotFoundComponent},
+  {path:'**', redirectTo:'not-found'}
 ];
 
 @NgModule({
