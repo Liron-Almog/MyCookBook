@@ -1,8 +1,8 @@
 
 <div class="row justify-content-center">
 
-    <div *ngIf="isError" style="display: inline;" class=" mt-1 col-md-8 col-12 alert alert-danger row" role="alert">
-      Something Went Wrong...
+    <div *ngIf="error" class=" mt-1 col-md-8 col-12 alert alert-danger row" role="alert">
+      {{error}}
     </div>
     <div *ngIf="isLoading" class="spinner-border mx-auto"  role="status">
     </div>

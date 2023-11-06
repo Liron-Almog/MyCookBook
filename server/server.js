@@ -34,10 +34,8 @@ function authorization(req, res, next) {
    
     const token = JSON.parse(req.cookies.token).token
     const secretKey = 'qqwewdxc'
-    console.log(token);
     jwt.verify(token, secretKey, (err, decoded) => {
         if (err) {
-          console.log('falied');
           res.status(401);
         } else {
           next(); // Continue processing the request

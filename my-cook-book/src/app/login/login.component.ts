@@ -16,8 +16,8 @@ export class LoginComponent implements  OnInit, OnDestroy{
   private subscriptionLoading: Subscription;
   private subscriptionError: Subscription;
 
-  public isLoading = false;
-  public errorMessage = "";
+  public isLoading: boolean = false;
+  public errorMessage:string = "";
 
   constructor(private router:Router,private userAuthAPI:UserAuthService){}
 
@@ -33,14 +33,16 @@ export class LoginComponent implements  OnInit, OnDestroy{
   }
 
   onSubmit(form:NgForm){
+
     this.userAuthAPI.login(form.value);
-    
   }
 
   ngOnDestroy() {
+
     if (this.subscriptionLoading) {
       this.subscriptionLoading.unsubscribe();
     }
+
     if (this.subscriptionError) {
       this.subscriptionError.unsubscribe();
     }

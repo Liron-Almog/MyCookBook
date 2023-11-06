@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserDataService implements OnDestroy {
+
   subscriptionPost: Subscription;
   subscriptionDelete: Subscription;
   subscriptionRecipes:Subscription;
@@ -14,34 +15,35 @@ export class UserDataService implements OnDestroy {
   subscriptionPostIng: Subscription; // Make sure to define this subscription
 
   isLoadingIngredients = new Subject<boolean>();
-  isError = new Subject<boolean>();
+  isError = new Subject<string>();
   isLoading = new Subject<boolean>();
   recipes = new Subject<any[]>(); 
   ingredients:any;
 
   constructor(private apiService: ApiService, private router: Router) {
-    this.isError.next(false);
+    this.isError.next("");
     this.isLoading.next(false);
     this.recipes.next(null);
   }
 
   deleteItem(pathAndParams: string) {
     this.isLoading.next(true);
+    this.isError.next("");
     this.subscriptionDelete = this.apiService.delete(pathAndParams).subscribe(
       () => {
         this.isLoading.next(false);
         this.fetchRecipes();
       },
-      (error) => {
-        // Error case
-        this.isLoading.next(false);
-        this.isError.next(true);
+      (error) => {         
+        this.isLoading.next(false);      
+        this.isError.next(error.error);
       }
     );
   }
 
   fetchRecipes() {
     this.isLoading.next(true);
+    this.isError.next("");
     this.subscriptionRecipes = this.apiService.get('/recipes/get-items').subscribe(
       (data) => {
         this.isLoading.next(false);
@@ -49,8 +51,7 @@ export class UserDataService implements OnDestroy {
       },
       (error) => { 
         this.isLoading.next(false);
-        this.isError.next(true);
-        console.error('An error occurred:', error);
+        this.isError.next(error.error);
       }
     );
   }
@@ -58,6 +59,7 @@ export class UserDataService implements OnDestroy {
   async getIngredientsByRecipeId(id: number) {
     
     this.isLoadingIngredients.next(true);
+    this.isError.next("");
     try {
       const data = await this.apiService.get('/ingredients/get-ingredient/' + id).toPromise();
       this.isLoadingIngredients.next(false);
@@ -65,11 +67,12 @@ export class UserDataService implements OnDestroy {
     } 
     catch (error) {
       this.isLoadingIngredients.next(false);
-      this.isError.next(true);
+      this.isError.next(error.error);
     }
     
   }
   postNewRecipe(postData: any) {
+    this.isError.next("");
     this.subscriptionPost = this.apiService.post('/recipes/add-recipe', postData).subscribe(
       (data) => {
         // Success case
@@ -80,7 +83,7 @@ export class UserDataService implements OnDestroy {
       (error) => {
         // Error case
         this.isLoading.next(false);
-        this.isError.next(true);
+        this.isError.next(error.error);
       }
     );
   }

@@ -11,8 +11,8 @@ import { Subscription } from 'rxjs';
 export class TableComponent {
 
   colNames:string[] = ['#','Recipe Name','Preparation Time','Servings','Delete'];
-  isLoading = false;
-  isError = false;
+  isLoading:boolean = false;
+  error: string = "";
   recipes = [];
 
   // Declare subscriptions as class properties
@@ -22,26 +22,24 @@ export class TableComponent {
 
   constructor(private userData: UserDataService) { }
 
-  onDeleteClick(event:any) {
+  onDeleteClick(event:any) :void{
     this.userData.deleteItem("/recipes/delete-item/"+ event.target.id);
   }
 
   ngOnInit(): void {
-    this.userData.initializeRecipeData();
+    this.userData.initializeRecipeData();  
     // Assign the subscriptions in ngOnInit
     this.subscriptionLoading = this.userData.isLoading.subscribe((value) => {
       this.isLoading = value;
-      console.log('Received isLoading value:', value);
     });
+
     this.subscriptionError = this.userData.isError.subscribe((value) => {
-      this.isError = value;
-      console.log('Received isError value:', value);
+      this.error = value;
     });
+
     this.subscriptionData = this.userData.recipes.subscribe((value) => {
+  
       this.recipes = value;
-      console.log(value);
-      
-      console.log('Received recipes value:', value);
     });
   }
   ngOnDestroy(): void {

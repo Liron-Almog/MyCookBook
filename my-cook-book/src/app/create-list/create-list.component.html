@@ -5,63 +5,60 @@
     <main>
         <div class="row justify-content-center">
             <div class="col-10">
-                <div *ngIf="isError" class="alert alert-danger col-10" role="alert">
-                    Something Went Worng...
+                <div *ngIf="error" class="alert alert-danger " role="alert">
+                    {{error}}
                 </div>
                 <div *ngIf="isLoading" class="spinner-border col-10" role="status">
                 </div>
           
-            <form (submit)="onSubmit(f)" #f="ngForm" class="mt-1" ngNativeValidate >
-             
-                    <div class="text-danger mandatory-messege">All the fields are mandatory</div>
-              
+            <form (submit)="onSubmit(f)" #f="ngForm" class="mt-1 row justify-content-center" ngNativeValidate >
+                <div class="text-danger mandatory-messege">All the fields are mandatory</div>
+                <div [hidden]="step != 1" class="col-md-10 col-10">
+                        <div class="row justify-content-center">
+                            <div class="col-md-5 col-12">
+                                <div class="form-group">
+                                    <label for="recipeName">Recipe Name</label>
+                                    <input  ngModel type="text" class="form-control" 
+                                    id="recipeName" ngModel name="recipeName" placeholder="Recipe Name" required>
+                                </div>
+                                
+                                <div class="form-group mt-1">
+                                    <label for="preparationTime">Preparation Time</label>
+                                    <input  ngModel name="preparationTime" type="time" class="form-control" id="preparationTime" placeholder="Preparation Time">
+                                </div>
+                                <div  class="form-group mt-1">
+                                    <label for="Servings">Servings</label>
+                                    <input ngModel name="servings"  type="number" id="Servings" class="form-control" placeholder="Enter Servings" min="1" max="100000" step="1.0">
+                                </div>
 
-                <div [hidden]="step != 1" class="row justify-content-center ">
-                    <div class="col-md-5 col-12">
-                        <div class="form-group">
-                            <label for="recipeName">Recipe Name</label>
-                            <input  ngModel type="text" class="form-control" 
-                            id="recipeName" ngModel name="recipeName" placeholder="Recipe Name" required>
-                        </div>
-                        
-                        <div class="row">
-                            <div  class="form-group mt-1 col-6">
-                                <label for="preparationTime">Preparation Time</label>
-                                <input  ngModel name="preparationTime" type="time" class="form-control" id="preparationTime" placeholder="Preparation Time">
                             </div>
-                            
-                            <div  class="form-group mt-1 col-6">
-                                <label for="Servings">Servings</label>
-                                <input ngModel name="servings"  type="number" id="Servings" class="form-control" placeholder="Enter Servings" min="1" max="100000" step="1.0">
+                            <div class="col-md-5 col-12">
+                                <div  class="form-group mt-1">
+                                    <label for="urlPhoto">Url photo</label>
+                                    <input  ngModel name="urlPhoto" id="urlPhoto" class="form-control" placeholder="Enter Url Photo">
+                                </div>
+                                
+                                <div  class="form-group mt-1">
+                                    <label for="description">Description</label>
+                                    <textarea rows="3" name="description" ngModel id="description" class="form-control" placeholder="Enter Description"></textarea>
+                                </div>
                             </div>
                         </div>
 
-                        <div  class="form-group mt-1">
-                            <label for="urlPhoto">Url photo</label>
-                            <input  ngModel name="urlPhoto" id="urlPhoto" class="form-control" placeholder="Enter Url Photo">
-                        </div>
-                        
-                        <div  class="form-group mt-1">
-                            <label for="description">Description</label>
-                            <textarea  name="description" ngModel id="description" class="form-control" placeholder="Enter Description"></textarea>
-                        </div>
+                        <div class="row justify-content-center mt-1">
 
-
-                        <div class="row justify-content-center mt-3">
-                            <div class="form-check col-md-3 col-4">
+                            <div class="form-check col-md-2 col-6">
                                 <input  name="vegetarian" ngModel type="checkbox" class="form-check-input" id="vegetarian">
                                 <label class="form-check-label" for="vegetarian">Vegetarian</label>
                             </div>
-                            
-                            <div class="form-check col-md-3 col-4">
+
+                            <div class="form-check col-md-2 col-6">
                                 <input  name="glutenFree" ngModel type="checkbox" class="form-check-input" id="glutenFree">
                                 <label class="form-check-label" for="glutenFree">glutenFree</label>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                
+           
                 <app-add-ingredient *ngIf="step == 2" (newIngredient)="addIngredient($event)" ></app-add-ingredient>
                 <div *ngIf="ingredientsArray.length > 0 && step == 2" class="row justify-content-center">
                     <app-ingredient-table *ngIf="ingredientsArray.length > 0" class="col-10" [ingredientsArray]="ingredientsArray"></app-ingredient-table>
@@ -73,7 +70,7 @@
             </form>
 
             <div *ngIf="step > START_STEP -1 && step != MAXIMUM_STEP" class="row justify-content-center mt-3">
-                <button (click)="onNext()" class="btn btn-success col-md-3 col-2">Next</button>
+                <button (click)="onNext()" class="btn btn-success col-md-2 col-4">Next</button>
             </div>
             <div *ngIf="step > START_STEP" class="row p-2">
                 <button  (click)="onBack()" class="btn btn-success col-md-2 col-3">Back</button>

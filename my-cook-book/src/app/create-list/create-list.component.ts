@@ -17,7 +17,7 @@ export class CreateListComponent implements OnDestroy, OnInit{
   public MAXIMUM_STEP = 2;
   public step:number = 1;
   public isLoading = false;
-  public isError = false;
+  public error:string = "";
   public ingredientsArray:Ingredient[] = []
 
   // Declare subscriptions as class properties
@@ -33,8 +33,9 @@ export class CreateListComponent implements OnDestroy, OnInit{
     this.subscriptionLoading = this.userData.isLoading.subscribe((value) => {
       this.isLoading = value;
     });
+
     this.subscriptionError = this.userData.isError.subscribe((value) => {
-      this.isError = value;
+      this.error = value;
     });
   }
 

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db'); // Adjust the path if needed
 const { deleteIngredient, addIngredient } = require('../utilities'); // Import the deleteIngredient function
-
+const myValidtor = require('../validators/AuthValidator')
 let myConnection;
 
 (async () => {
@@ -19,8 +19,7 @@ router.get('/get-items', async (req, res) => {
     const [rows] = await myConnection.execute('SELECT * FROM recipe_management.recipes');
     res.status(200).send(rows);
   } catch (err) {
-    res.status(400).sendStatus(err);
-    console.log(err);
+    res.status(400).send(err.message);
   }
 });
 
@@ -31,6 +30,12 @@ router.post('/add-recipe', async (req, res) => {
     glutenFree = glutenFree ? true : false;
     vegetarian = vegetarian ? true : false;
     
+    const validator = new myValidtor();
+
+
+    if(validator.isEmpty(recipeName, preparationTime, description, servings, vegetarian, glutenFree, urlPhoto)){
+      throw new Error(validator.getMessage());
+    }
     const insertQuery = `
       INSERT INTO recipes (user_id, recipe_name, preparation_time, description, servings, vegetarian, gluten_free, url_photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
     `;
@@ -42,11 +47,8 @@ router.post('/add-recipe', async (req, res) => {
 
     res.status(200).send('');
 
-
-  } catch (error) {
-    // Handle error
-    res.status(400).send(error);
-    console.error("Error inserting data:", error);
+  } catch (err) {
+    res.status(400).send(err.message);
   }
 });
 
@@ -59,7 +61,6 @@ router.delete('/delete-item/:id', async (req, res) => {
     await deleteIngredient(recipeId);
     await myConnection.execute(`DELETE FROM recipe_management.recipes WHERE recipe_id = ${recipeId}`);
 
-    console.log('here');
     res.status(200).send('');
   } catch (err) {
     res.status(400).send(err.message);

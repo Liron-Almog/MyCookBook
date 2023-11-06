@@ -1,53 +1,49 @@
-
-
-form{
-    border-radius: 10px;
-    padding: 20px;
-    padding-bottom: 10px;
-    background-color: #eae4e4e3;
-}
-.dont-have-account{
-    margin-top: 10px;
-    font-size: 0.8rem;
-}
-.btn:hover , .btn:focus{
-    color: aliceblue;
-    background-color: var(--FIRSTMAINCOLOR);
-}
-.my-body{
-    background-color:#F2F2F2;
-}
-.btn{
-    color: var(--BGCOLOR);
-    font-weight: 600;
-    background-color: var(--THIRDMAINCOLOR);
+form {
+  border-radius: 10px;
+  padding: 20px;
+  padding-bottom: 10px;
+  background-color: #eae4e4e3;
 }
 
-
-
-h3{
-    text-align: center;
-    font-weight: 800;
+.dont-have-account {
+  margin-top: 10px;
+  font-size: 0.8rem;
 }
 
-
-.passion-sentence{
-    font-family: 'Brush Script MT';
-    font-size: 1.5rem;
-    color: var(--SECONDMAINCOLOR);
-    text-align: center;
-   
-    color: #90908E;
+.btn:hover,
+.btn:focus {
+  color: aliceblue;
+  background-color: var(--FIRSTMAINCOLOR);
 }
 
-.dont-have-account{
-    text-align: center;
-    font-weight: 500;
-   
+.my-body {
+  background-color: #f2f2f2;
 }
 
+.btn {
+  color: var(--BGCOLOR);
+  font-weight: 600;
+  background-color: var(--THIRDMAINCOLOR);
+}
 
-/* --BGCOLOR:#252B48;
---FIRSTMAINCOLOR:#445069;
---SECONDMAINDCOLOR:#5B9A8B;
---THIRDMAINCOLOR:#F7E987; */
+h3 {
+  text-align: center;
+  font-weight: 800;
+}
+
+.passion-sentence {
+  font-family: "Brush Script MT";
+  font-size: 1.5rem;
+  color: var(--SECONDMAINCOLOR);
+  text-align: center;
+  color: #90908e;
+}
+
+.dont-have-account {
+  text-align: center;
+  font-weight: 500;
+}
+
+.sign-in-link {
+  white-space: nowrap;
+}

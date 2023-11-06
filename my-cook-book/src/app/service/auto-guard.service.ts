@@ -17,7 +17,6 @@ export class AutoGuard implements CanActivate{
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
-        return true
         if(this.userAuthService.isUserLoggedIn() && this.cookieService.check('token'))
             return true;
         else this.router.navigate(['/login']);

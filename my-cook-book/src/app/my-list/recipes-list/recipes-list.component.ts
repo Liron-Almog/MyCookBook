@@ -10,8 +10,8 @@ import { Subscription } from 'rxjs';
 })
 export class RecipesListComponent implements OnInit, OnDestroy {
 
-  isLoading = false;
-  isError = false;
+  isLoading :boolean = false;
+  isError: string = "";
   recipes;
 
   // Declare subscriptions as class properties
