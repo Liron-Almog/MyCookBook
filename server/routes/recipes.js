@@ -34,6 +34,7 @@ router.post('/add-recipe', async (req, res) => {
 
 
     if(validator.isEmpty(recipeName, preparationTime, description, servings, vegetarian, glutenFree, urlPhoto)){
+      console.log("HEREEEEEEEEEEEE");
       throw new Error(validator.getMessage());
     }
     const insertQuery = `

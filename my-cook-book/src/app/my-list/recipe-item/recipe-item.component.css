@@ -1,20 +1,25 @@
 p {
-    padding-bottom: 0px;
-
+  padding-bottom: 0px;
 }
 
-img{
-    border-radius: 50px;
-    max-width: 150px;
-    max-height: 150px;
-    width: 250px;
-    height: 150px;
+img {
+  border-radius: 50px;
+  max-width: 150px;
+  max-height: 150px;
+  width: 250px;
+  height: 150px;
 }
 
-.card{
-    padding: 8px;
+.card {
+  padding: 8px;
 }
 
-.ingredients-btn{
-    border-radius: 50%;
+.ingredients-btn {
+  border-radius: 50%;
+}
+
+.description-btn {
+  color: var(--BGCOLOR);
+  font-weight: 600;
+  background-color: var(--BUTTONCOLOR);
 }

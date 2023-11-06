@@ -9,11 +9,10 @@ table{
     color: aliceblue;
     background-color: rgba(128, 30, 30, 0.989);
 }
-p{
-    font-weight: 600;
+
+
+
+.empty-list-ms{
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
-
-
-

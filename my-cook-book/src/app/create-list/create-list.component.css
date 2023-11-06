@@ -1,9 +1,8 @@
-
-.submit{
-    background-color: #694097; 
-    color: aliceblue;
-    font-weight: 500;
+.submit {
+  color: var(--BGCOLOR);
+  font-weight: 600;
+  background-color: var(--BUTTONCOLOR);
 }
-.mandatory-messege{
-    text-align: center;
+.mandatory-messege {
+  text-align: center;
 }

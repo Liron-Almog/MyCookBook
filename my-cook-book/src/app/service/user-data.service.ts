@@ -88,8 +88,6 @@ export class UserDataService implements OnDestroy {
     );
   }
 
-  
-
   initializeRecipeData() {
     this.fetchRecipes();
   }

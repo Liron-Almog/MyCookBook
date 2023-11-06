@@ -5,7 +5,11 @@
         <span class="sr-only">Loading...</span>
       </div>
 
+    <p *ngIf="recipes.length == 0" class="text-danger">Your list is empty...</p>
+
+    
     <div *ngIf="!isLoading" class="row accordion justify-content-center">
+
         <app-recipe-item class="col-md-3 col-sm-6 col-7" *ngFor="let recipeItem of recipes" [recipe]="recipeItem"></app-recipe-item>
     </div>
 </div>

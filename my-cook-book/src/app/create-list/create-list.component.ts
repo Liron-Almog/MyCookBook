@@ -52,7 +52,8 @@ export class CreateListComponent implements OnDestroy, OnInit{
 
   }
   onSubmit(form:NgForm){
- 
+    console.log("hereeeeeeeeeeeeeeeeeeeee");
+    
     form.value.ingredients = this.ingredientsArray;
     this.userData.postNewRecipe(form.value);
   }

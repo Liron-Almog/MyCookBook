@@ -11,16 +11,14 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit, OnDestroy{
 
-
   constructor(private userAuthAPI:UserAuthService){}
 
   private subscriptionLoading :Subscription;
   private subscriptionErrorRegister: Subscription;
 
-  public isLoading = false;
-  public errorMessage = "";
+  public isLoading:boolean = false;
+  public errorMessage:string = "";
 
-  
   ngOnInit(): void {
 
     this.subscriptionLoading = this.userAuthAPI.isLoading.subscribe((value) => {
@@ -33,12 +31,12 @@ export class RegisterComponent implements OnInit, OnDestroy{
   }
 
   onSubmit(form:NgForm){
-    console.log(form.value);
+
     this.userAuthAPI.register(form.value);
-    
   }
 
   ngOnDestroy() {
+    
     if (this.subscriptionLoading) {
       this.subscriptionLoading.unsubscribe();
     }

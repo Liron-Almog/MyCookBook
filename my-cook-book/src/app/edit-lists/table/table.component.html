@@ -1,30 +1,38 @@
-
 <div class="row justify-content-center">
-
-    <div *ngIf="error" class=" mt-1 col-md-8 col-12 alert alert-danger row" role="alert">
-      {{error}}
-    </div>
-    <div *ngIf="isLoading" class="spinner-border mx-auto"  role="status">
-    </div>
-
-    <p *ngIf="recipes.length == 0" class="text-danger">Your list is empty...</p>
-
-    <div *ngIf="recipes.length > 0">
-    <table *ngIf="!isLoading" class="table table-responsive-sm col-md-8 col-10 mt-2 table-hover">
-      <thead>
-        <tr>
-          <th *ngFor="let field of colNames" scope="col">{{field}}</th>
-        </tr>
-      </thead>
-      <tbody >
-        <tr *ngFor="let recipeElement of recipes; let i = index"  [recipe]="recipeElement">
-          <th scope="row">{{i + 1}}</th>
-          <td>{{recipeElement.recipe_name}}</td>
-          <td>{{recipeElement.preparation_time}}</td>
-          <td>{{recipeElement.servings}}</td>
-          <td><button class="btn delete-btns" id="{{recipeElement.recipe_id}}" (click)="onDeleteClick($event)">Delete</button></td>
-        </tr>
-      </tbody>
-    </table>
+  <div *ngIf="error" class="mt-1 col-md-8 col-12 alert alert-danger row" role="alert">
+    {{ error }}
   </div>
+  <div *ngIf="isLoading" class="spinner-border mx-auto" role="status"></div>
+
+  <p *ngIf="recipes.length == 0" class="text-danger empty-list-ms">Your list is empty...</p>
+
+  <div *ngIf="recipes.length > 0">
+    <div class="table-responsive">
+      <table *ngIf="!isLoading" class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Recipe Name</th>
+            <th scope="col">Preparation Time</th>
+            <th scope="col">Servings</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let recipeElement of recipes; let i = index" [recipe]="recipeElement">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ recipeElement.recipe_name }}</td>
+            <td>{{ recipeElement.preparation_time }}</td>
+            <td>{{ recipeElement.servings }}</td>
+            <td>
+              <button class="btn delete-btns" id="{{ recipeElement.recipe_id }}" (click)="onDeleteClick($event)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
   </div>
+</div>

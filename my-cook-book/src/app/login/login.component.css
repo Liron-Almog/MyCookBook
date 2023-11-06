@@ -23,7 +23,7 @@ form {
 .btn {
   color: var(--BGCOLOR);
   font-weight: 600;
-  background-color: var(--THIRDMAINCOLOR);
+  background-color: var(--BUTTONCOLOR);
 }
 
 h3 {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class NavBarComponent {
 
+
+  constructor(private cookieService:CookieService ){}
+
+  deleteTokenFromCookie(): void {
+    this.cookieService.delete('token');
+    
+  }
 }
