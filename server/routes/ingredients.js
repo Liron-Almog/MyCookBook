@@ -1,22 +1,18 @@
 const express = require('express')
-const router = express.Router();
-const db = require('../config/db'); // Adjust the path if needed
+const ingredientRouter = express.Router();
+const db = require('../utilities/db'); // Adjust the path if needed
 let myConnection;
 
 
-router.get('/get-ingredient/:id',async (req,res) =>{
-
+ingredientRouter.get('/get-ingredient/:id',async (req,res) =>{
 
   try {
     myConnection = await db.connect();
     const recipeId = req.params.id;
-    console.log(recipeId);
     
     if (!recipeId) 
       throw new Error('Recipe ID is missing');
 
-
-    console.log(recipeId);
     const [data] = await myConnection.execute(`SELECT description,quantity,unit FROM recipe_management.ingredients WHERE recipe_id = ${recipeId}`);
     
     res.status(200).send(data);
@@ -26,4 +22,36 @@ router.get('/get-ingredient/:id',async (req,res) =>{
   }
  })
 
-module.exports = router;
+  async function addIngredient(ingredients,recipeId) {
+  try { 
+    myConnection = await db.connect();
+
+    const insertQuery = `INSERT INTO ingredients (recipe_id, description, quantity, unit) VALUES (?, ?, ?, ?);`;
+
+    for (let element of ingredients) {
+      const values = [recipeId, element.ingredient, element.quantity, element.type];
+      await myConnection.execute(insertQuery, values);
+    }
+
+  } catch (error) {
+    throw new Error('Can not add the ingredients');
+  }
+}
+
+ async function deleteIngredient(id){
+
+  myConnection = await db.connect();
+
+   try {
+       await myConnection.execute(`DELETE FROM recipe_management.ingredients WHERE recipe_id = ${id}`);
+     } catch (err) {
+       throw new Error('Can not deletes the ingredients');
+     }
+}
+
+
+module.exports = {
+  ingredientRouter,
+  addIngredient,
+  deleteIngredient,
+};

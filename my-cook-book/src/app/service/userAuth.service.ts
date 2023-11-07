@@ -30,8 +30,8 @@ export class UserAuthService implements OnDestroy{
       this.subscriptionLogin = this.apiService.post('/login', pathAndParams).subscribe(
         (data) => {
           // Successful login
-          this.isLoading.next(false);
-          this.cookieService.set('token',JSON.stringify(data));
+          this.isLoading.next(false);   
+          this.cookieService.set('token',data['token']);
           this.isLogin = true;
           this.router.navigate(['/my-list']);
         },

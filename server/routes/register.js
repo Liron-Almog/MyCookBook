@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
-const db = require('../config/db'); // Adjust the path if needed
-const AuthValidtor = require('../validators/AuthValidator')
+const db = require('../utilities/db'); // Adjust the path if needed
+const AuthValidtor = require('../utilities/validator')
 let myConnection;
 
 router.post('/',async (req,res) =>{
@@ -22,7 +22,6 @@ router.post('/',async (req,res) =>{
     await myConnection.execute(`INSERT INTO recipe_management.users (email, password) VALUES ('${email}', '${password}')`);
 
     res.status(200).json({ message: 'Succeeded' });
-
 
   } catch (err) {
     res.status(400).send([err.message]);

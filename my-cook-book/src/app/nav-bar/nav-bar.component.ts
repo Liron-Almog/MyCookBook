@@ -11,8 +11,8 @@ export class NavBarComponent {
 
   constructor(private cookieService:CookieService ){}
 
-  deleteTokenFromCookie(): void {
+  deleteCookies(): void {
     this.cookieService.delete('token');
-    
+    this.cookieService.delete('email');
   }
 }

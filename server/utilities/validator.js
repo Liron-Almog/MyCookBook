@@ -1,6 +1,6 @@
 let validator = require('validator');
 
-function AuthValidtor(){
+function myValidtor(){
 
     let message = '';
 
@@ -50,4 +50,4 @@ function AuthValidtor(){
     
 }
 
-module.exports = AuthValidtor;
+module.exports = myValidtor;

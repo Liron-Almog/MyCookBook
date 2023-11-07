@@ -1,8 +1,8 @@
 const express = require('express');
-const router = express.Router();
-const db = require('../config/db'); // Adjust the path if needed
-const { deleteIngredient, addIngredient } = require('../utilities'); // Import the deleteIngredient function
-const myValidtor = require('../validators/AuthValidator')
+const recipeRouter = express.Router();
+const db = require('../utilities/db'); // Adjust the path if needed
+const { deleteIngredient, addIngredient } = require('../routes/ingredients'); // Import the deleteIngredient function
+const myValidtor = require('../utilities/validator')
 let myConnection;
 
 (async () => {
@@ -14,17 +14,22 @@ let myConnection;
   }
 })();
 
-router.get('/get-items', async (req, res) => {
+recipeRouter.get('/get-items', async (req, res) => {
+
+
   try {
-    const [rows] = await myConnection.execute('SELECT * FROM recipe_management.recipes');
+    const [rows] = await myConnection.execute(`SELECT * FROM recipe_management.recipes where user_id='${req.userId}'`);
+    console.log(rows);
     res.status(200).send(rows);
   } catch (err) {
     res.status(400).send(err.message);
   }
 });
 
-router.post('/add-recipe', async (req, res) => {
+recipeRouter.post('/add-recipe', async (req, res) => {
+
   try {
+
     myConnection = await db.connect();
     let { recipeName, preparationTime, description, servings, vegetarian, glutenFree, urlPhoto,ingredients} = req.body;
     glutenFree = glutenFree ? true : false;
@@ -32,9 +37,7 @@ router.post('/add-recipe', async (req, res) => {
     
     const validator = new myValidtor();
 
-
     if(validator.isEmpty(recipeName, preparationTime, description, servings, vegetarian, glutenFree, urlPhoto)){
-      console.log("HEREEEEEEEEEEEE");
       throw new Error(validator.getMessage());
     }
     const insertQuery = `
@@ -53,7 +56,7 @@ router.post('/add-recipe', async (req, res) => {
   }
 });
 
-router.delete('/delete-item/:id', async (req, res) => {
+recipeRouter.delete('/delete-item/:id', async (req, res) => {
   try {
     const recipeId = req.params.id;
     if (!recipeId) 
@@ -68,4 +71,4 @@ router.delete('/delete-item/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = recipeRouter;
