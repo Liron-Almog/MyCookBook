@@ -16,3 +16,7 @@ MySQL database used for secure and reliable data storage.
 Capture recipe details, including recipe_id, user_id, recipe_name, preparation_time, description, servings, vegetarian, gluten_free, and url_photo.
 ### Recipe Management:
 Easily delete unwanted recipes.
+
+
+https://github.com/Liron-Almog/MyCookBook/assets/100926289/530bca06-56b7-4964-be4b-4f2f2aa16203
+
