@@ -1,7 +1,7 @@
 
 # My Cookbook
 
-My Cookbook is a responsive digital recipe book that allows you to manage your collection of recipes. Built with Angular for the front end, Node.js for server-side logic, and MySQL for the database, this application provides a seamless and efficient recipe management experience. Create an account, log in securely with JSON Web Tokens (JWT), and start entering your recipes with details such as recipe_id (auto-incremented), user_id, recipe_name, preparation_time, description, servings, vegetarian, gluten_free, and url_photo. Manage your recipes by deleting any unwanted entries from your collection.
+My Cookbook is a responsive digital recipe book that allows you to manage your collection of recipes. Built with Angular for the front end, Node.js for server-side logic, and MySQL for the database, this application provides a seamless and efficient recipe management experience. Create an account, log in securely with JSON Web Tokens (JWT), and start entering your recipes with details such as recipe name, preparation time, description, servings, vegetarian, gluten_free, ingredients, and url_photo. Manage your recipes by deleting any unwanted entries from your collection.
 
 ## Features
 ### User Authentication:
